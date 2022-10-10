@@ -2,7 +2,7 @@ from models.players.random_player import RandomPlayer
 from models.players.corner_player import CornerPlayer
 from views.console_board_view import ConsoleBoardView
 from models.board import Board
-
+import time
 import glob
 
 
@@ -23,9 +23,10 @@ class BoardController:
         self.view.update_view()
 
         while finish_game != 2:
-            input("")
+            # input("")
             atual_color = self.atual_player.color
             print('Jogador: ' + atual_color)
+            start = time.time()
             if self.board.valid_moves(atual_color).__len__() > 0:
                 self.board.play(self.atual_player.play(
                     self.board.get_clone()), atual_color)
@@ -35,6 +36,9 @@ class BoardController:
                 print('Sem movimentos para o jogador: ' + atual_color)
                 finish_game += 1
             self.atual_player = self._opponent(self.atual_player)
+            print(
+                f"Tempo de jogada: {str(round(time.time() - start,0))} seg.\n")
+            time.sleep(0.7)
 
         self._end_game()
 
@@ -43,11 +47,11 @@ class BoardController:
         if score[0] > score[1]:
             print("")
             print('Jogador ' + self.white_player.__class__.__name__ +
-                  '('+Board.WHITE+') Ganhou')
+                  ' BRANCO ' + '('+Board.WHITE+') Ganhou')
         elif score[0] < score[1]:
             print("")
             print('Jogador ' + self.black_player.__class__.__name__ +
-                  '('+Board.BLACK+') Ganhou')
+                  ' PRETO ' + '('+Board.BLACK+') Ganhou')
         else:
             print("")
             print('Jogo terminou empatado')
@@ -60,14 +64,30 @@ class BoardController:
 
     def _select_player(self, color):
         players = glob.glob('./models/players/*_player.py')
-        print('\nSelecione um dos players abaixo para ser o jogador '+color)
+        if color == 'o':
+            name = 'BRANCO'
+        else:
+            name = 'PRETO'
 
-        for idx, player in enumerate(players):
-            print(idx.__str__() + " - " + player)
+        while True:
+            print('\nSelecione um dos players abaixo para ser o jogador {} ({})'.format(
+                name, color))
 
-        player = input("Digite o numero do player que voce deseja: ")
+            for idx, player in enumerate(players):
+                print(idx.__str__() + " - " + player.split('/')[3])
+            try:
+                player = int(
+                    input("\nDigite o numero do player que voce deseja: "))
+            except ValueError:
+                print("Escolha deve ser um inteiro")
+                continue
+
+            if 0 <= player < len(players):
+                break
+
+            print("Escolha inválida")
+        print()
         module_globals = {}
         exec(open(players[int(player)]).read(), module_globals)
-        # print(module_globals.keys())
 
         return module_globals[list(module_globals.keys())[len(module_globals.keys()) - 1]](color)
