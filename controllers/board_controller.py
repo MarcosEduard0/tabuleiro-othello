@@ -68,7 +68,6 @@ class BoardController:
             name = 'BRANCO'
         else:
             name = 'PRETO'
-        print(players)
         while True:
             print('\nSelecione um dos players abaixo para ser o jogador {} ({})'.format(
                 name, color))
