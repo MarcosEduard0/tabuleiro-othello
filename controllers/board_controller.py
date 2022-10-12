@@ -23,7 +23,7 @@ class BoardController:
         self.view.update_view()
 
         while finish_game != 2:
-            input("")
+            # input("")
             atual_color = self.atual_player.color
             print('Jogador: ' + atual_color)
             start = time.time()
@@ -73,7 +73,8 @@ class BoardController:
                 name, color))
 
             for idx, player in enumerate(players):
-                print(idx.__str__() + " - " + player.split('/')[-1])
+                print(idx.__str__() + " - " +
+                      player.split('\\')[-1].split('/')[-1])
             try:
                 player = int(
                     input("\nDigite o numero do player que voce deseja: "))
