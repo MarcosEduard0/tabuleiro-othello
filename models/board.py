@@ -3,7 +3,7 @@ import copy
 
 
 class Board:
-    EMPTY, BLACK, WHITE, OUTER = '.', '@', 'o', '?'
+    EMPTY, BLACK, WHITE, OUTER = '.', '○', '●', '?'
 
     UP, DOWN, LEFT, RIGHT = [-1, 0], [1, 0], [0, -1], [0, 1]
     UP_RIGHT, DOWN_RIGHT, DOWN_LEFT, UP_LEFT = [-1,
@@ -52,16 +52,20 @@ class Board:
         return ret
 
     def __str__(self):
-        ret = 'Score(White, Black): ' + self.score().__str__()
-        ret += '\n  '
+        score = self.score().__str__()
+        # ret = f'Score: braco ●: {score[1]}, preto ○: {score[4]}'
+        ret = f'Score [●, ○]: {score}'
+        ret += '\n\n    '
         for i in range(1, 9):
             ret += i.__str__() + ' '
         ret += '\n'
+        ret += "  ┌─────────────────┐\n"
         for i in range(1, 9):
-            ret += i.__str__() + ' '
+            ret += i.__str__() + ' │ '
             for j in range(1, 9):
                 ret += self.board[i][j] + ' '
-            ret += '\n'
+            ret += '│\n'
+        ret += "  └─────────────────┘"
         return ret
 
     def score(self):

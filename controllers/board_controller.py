@@ -64,10 +64,20 @@ class BoardController:
 
     def _select_player(self, color):
         players = glob.glob('./models/players/*_player.py')
-        if color == 'o':
+        if color == '●':
             name = 'BRANCO'
         else:
             name = 'PRETO'
+
+        print(
+            """\
+              ___  _   _          _ _
+             / _ \| |_| |__   ___| | | ___
+            | | | | __| '_ \ / _ \ | |/ _ \\
+            | |_| | |_| | | |  __/ | | (_) |
+             \___/ \__|_| |_|\___|_|_|\___/ 
+              """
+        )
         while True:
             print('\nSelecione um dos players abaixo para ser o jogador {} ({})'.format(
                 name, color))
