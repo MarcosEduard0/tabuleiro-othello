@@ -43,7 +43,7 @@ class BoardController:
                 self.view.update_view()
                 finish_game = 0
             else:
-                print('fSem movimentos para o jogador: {name} {atual_color}')
+                print(f'Sem movimentos para o jogador: {name} {atual_color}')
                 finish_game += 1
             self.atual_player = self._opponent(self.atual_player)
             print(
