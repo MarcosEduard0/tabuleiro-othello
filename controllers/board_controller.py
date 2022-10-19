@@ -35,7 +35,7 @@ class BoardController:
             # input("")
             atual_color = self.atual_player.color
             name = 'branco' if atual_color == '●' else 'preto'
-            print(f'Jogador: {name} {atual_color}')
+            print(f'\nJogador: {name} {atual_color}')
             start = time.time()
             if self.board.valid_moves(atual_color).__len__() > 0:
                 self.board.play(self.atual_player.play(

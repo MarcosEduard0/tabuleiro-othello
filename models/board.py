@@ -52,10 +52,8 @@ class Board:
         return ret
 
     def __str__(self):
-        score = self.score().__str__()
-        # ret = f'Score: braco ●: {score[1]}, preto ○: {score[4]}'
-        ret = f'Score [●, ○]: {score}'
-        ret += '\n\n    '
+        ret = f'Score [●, ○]: {self.score().__str__()}'
+        ret += '\n    '
         for i in range(1, 9):
             ret += i.__str__() + ' '
         ret += '\n'
