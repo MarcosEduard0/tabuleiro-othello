@@ -18,7 +18,7 @@ class BoardController:
              / _ \| |_| |__   ___| | | ___
             | | | | __| '_ \ / _ \ | |/ _ \\
             | |_| | |_| | | |  __/ | | (_) |
-             \___/ \__|_| |_|\___|_|_|\___/ 
+             \___/ \__|_| |_|\___|_|_|\___/ ufrj
               """
         )
 
@@ -85,7 +85,7 @@ class BoardController:
 
             for idx, player in enumerate(players):
                 print(idx.__str__() + " - " +
-                      player.split('\\')[-1].split('/')[-1])
+                      player.split('\\')[-1].split('/')[-1].split('_')[0])
             try:
                 player = int(
                     input("\nDigite o numero do player que voce deseja: "))
