@@ -34,7 +34,8 @@ class BoardController:
         while finish_game != 2:
             # input("")
             atual_color = self.atual_player.color
-            print('Jogador: ' + atual_color)
+            name = 'branco' if atual_color == '●' else 'preto'
+            print(f'Jogador: {name} {atual_color}')
             start = time.time()
             if self.board.valid_moves(atual_color).__len__() > 0:
                 self.board.play(self.atual_player.play(
@@ -79,8 +80,8 @@ class BoardController:
             name = 'PRETO'
 
         while True:
-            print('\nSelecione um dos players abaixo para ser o jogador {} ({})'.format(
-                name, color))
+            print(
+                f'\nSelecione um dos players abaixo para ser o jogador {name} ({color})')
 
             for idx, player in enumerate(players):
                 print(idx.__str__() + " - " +
