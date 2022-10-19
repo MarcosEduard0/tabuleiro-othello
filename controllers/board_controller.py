@@ -12,6 +12,15 @@ class BoardController:
         self.view = ConsoleBoardView(self.board)
 
     def init_game(self):
+        print(
+            """\
+              ___  _   _          _ _
+             / _ \| |_| |__   ___| | | ___
+            | | | | __| '_ \ / _ \ | |/ _ \\
+            | |_| | |_| | | |  __/ | | (_) |
+             \___/ \__|_| |_|\___|_|_|\___/ 
+              """
+        )
 
         self.white_player = self._select_player(Board.WHITE)
         self.black_player = self._select_player(Board.BLACK)
@@ -69,15 +78,6 @@ class BoardController:
         else:
             name = 'PRETO'
 
-        print(
-            """\
-              ___  _   _          _ _
-             / _ \| |_| |__   ___| | | ___
-            | | | | __| '_ \ / _ \ | |/ _ \\
-            | |_| | |_| | | |  __/ | | (_) |
-             \___/ \__|_| |_|\___|_|_|\___/ 
-              """
-        )
         while True:
             print('\nSelecione um dos players abaixo para ser o jogador {} ({})'.format(
                 name, color))
