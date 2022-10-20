@@ -7,10 +7,11 @@ class HumanPlayer:
 
     def play(self, board):
         movimentos = board.valid_moves(self.color)
-        print('Movimentos possiveis [linha, coluna]: ', end="")
-        for i in movimentos:
-            print(f"[{i}] ", end="")
-        print()
+        if movimentos:
+            print('Movimentos possiveis [linha, coluna]: ', end="")
+            for i in movimentos:
+                print(f"[{i}] ", end="")
+            print()
         rowInp = int(input("Linha: "))
         colInp = int(input("Coluna: "))
         move = Move(rowInp, colInp)
