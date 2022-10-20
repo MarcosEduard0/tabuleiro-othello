@@ -18,7 +18,7 @@ Instruções para jogar Othello, execute em qualquer interpretador Python 3.x. A
 
 Você será presenteado com uma tabuleiro de 8x8 na tela com um quadrado de 2x2 de peças alternados no meio, conforme descrito acima. Haverá um placar na parte superior do tabuleiro para acompanhar sua pontuação (quantas peças de cada cor) e indicar de quem é a vez. Além disso, ao fim de cada jogada será apresentado na parte inferior do tabuleiro um cronometro indicando quanto tempo levou a jogada.
 
-Por padão o jogo possui 3 agentes:
+Por padrão o jogo possui 3 agentes:
 
 - **coner_player** - prioriza os cantos do tabuleiro.
 - **human_player** - jogador humano.
@@ -26,7 +26,7 @@ Por padão o jogo possui 3 agentes:
 
 ## Criação de Agentes
 
-A criação de novos agentes devem possuir o prefixo `_player`, ou seja, `exemplo_player.py`. O conteúdo do arquivo deve obrigatóriamente um classe, contendo o `__init__` e `play`.
+A criação de novos agentes devem ser feitas na pasta **"controllers/models/players/"** e o nome do arquivo deve possuir o prefixo `_player`, ou seja, `exemplo_player.py`. O conteúdo do arquivo deve obrigatóriamente um classe, contendo a função `play` que receberá o tabuleiro atual.
 
 ```python
 class ExemploPlayer:
@@ -35,8 +35,6 @@ class ExemploPlayer:
     def play(self, board):
         return minimax_funcao()
 ```
-
-O arquivo deve ser salvo em **"controllers/models/players/"**
 
 ## Objetivo
 
