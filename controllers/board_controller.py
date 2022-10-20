@@ -54,8 +54,9 @@ class BoardController:
                 f'Sem movimentos para o jogador {name}')
             self.finish_game += 1
         self.atual_player = self._opponent(self.atual_player)
+        end = round(time.time() - start)
         print(
-            f"Tempo de jogada: {str(round(time.time() - start))} seg.\n")
+            f"Tempo de jogada: {end}s\n")
         time.sleep(0.7)
 
     def _end_game(self):
