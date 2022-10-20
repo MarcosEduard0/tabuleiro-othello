@@ -27,30 +27,36 @@ class BoardController:
 
         self.atual_player = self.black_player
 
-        finish_game = 0
+        self.finish_game = 0
 
         self.view.update_view()
 
-        while finish_game != 2:
-            # input("")
-            atual_color = self.atual_player.color
-            name = 'branco' if atual_color == '●' else 'preto'
-            print(f'\nJogador: {name} {atual_color}')
-            start = time.time()
-            if self.board.valid_moves(atual_color).__len__() > 0:
-                self.board.play(self.atual_player.play(
-                    self.board.get_clone()), atual_color)
-                self.view.update_view()
-                finish_game = 0
-            else:
-                print(f'Sem movimentos para o jogador: {name} {atual_color}')
-                finish_game += 1
-            self.atual_player = self._opponent(self.atual_player)
-            print(
-                f"Tempo de jogada: {str(round(time.time() - start))} seg.\n")
-            time.sleep(0.7)
-
+        while self.finish_game != 2:
+            try:
+                self._main_loop()
+            except KeyboardInterrupt:
+                return
         self._end_game()
+
+    def _main_loop(self):
+        # input("")
+        atual_color = self.atual_player.color
+        name = 'branco' if atual_color == '●' else 'preto'
+        print(f'\nJogador: {name} {atual_color}')
+        start = time.time()
+        if self.board.valid_moves(atual_color).__len__() > 0:
+            self.board.play(self.atual_player.play(
+                self.board.get_clone()), atual_color)
+            self.view.update_view()
+            self.finish_game = 0
+        else:
+            print(
+                f'Sem movimentos para o jogador {name}')
+            self.finish_game += 1
+        self.atual_player = self._opponent(self.atual_player)
+        print(
+            f"Tempo de jogada: {str(round(time.time() - start))} seg.\n")
+        time.sleep(0.7)
 
     def _end_game(self):
         score = self.board.score()
