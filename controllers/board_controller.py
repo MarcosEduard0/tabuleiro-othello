@@ -1,5 +1,3 @@
-from models.players.random_player import RandomPlayer
-from models.players.corner_player import CornerPlayer
 from views.console_board_view import ConsoleBoardView
 from models.board import Board
 import time
