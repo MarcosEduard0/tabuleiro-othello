@@ -24,6 +24,7 @@ class Board:
 
             self.board[4][4], self.board[4][5] = Board.WHITE, Board.BLACK
             self.board[5][4], self.board[5][5] = Board.BLACK, Board.WHITE
+            self.pieces = 4
         else:
             self.board = copy.deepcopy(board)
 
@@ -31,6 +32,7 @@ class Board:
         if (color == Board.BLACK) or (color == Board.WHITE):
             self.board[move.x][move.y] = color
             self._reverse(move, color)
+            self.pieces += 1
         return
 
     def get_square_color(self, l, c):
@@ -44,11 +46,12 @@ class Board:
         for i in range(1, 9):
             for j in range(1, 9):
                 if self.board[i][j] == Board.EMPTY:
+                    move = Move(i, j)
                     for direction in Board.DIRECTIONS:
-                        move = Move(i, j)
                         bracket = self._find_bracket(move, color, direction)
                         if bracket:
                             ret += [move]
+                            break
         return ret
 
     def __str__(self):

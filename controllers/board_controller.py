@@ -9,6 +9,7 @@ class BoardController:
         self.board = Board(None)
         self.view = ConsoleBoardView(self.board)
 
+
     def init_game(self):
         print(
             """\
@@ -20,8 +21,8 @@ class BoardController:
               """
         )
 
-        self.white_player = self._select_player(Board.WHITE)
         self.black_player = self._select_player(Board.BLACK)
+        self.white_player = self._select_player(Board.WHITE)
 
         self.atual_player = self.black_player
 
@@ -29,47 +30,59 @@ class BoardController:
 
         self.view.update_view()
 
-        while self.finish_game != 2:
+        while(self.board.pieces != 64 and self.finish_game != 2):
             try:
                 self._main_loop()
             except KeyboardInterrupt:
                 return
         self._end_game()
 
+
     def _main_loop(self):
-        # input("")
         atual_color = self.atual_player.color
-        name = 'branco' if atual_color == '●' else 'preto'
-        print(f'\nJogador: {name} {atual_color}')
+        name = 'BRANCO' if atual_color == Board.WHITE else 'PRETO'
+        print(f'\nJOGADOR: {name} ({atual_color})')
+        
         start = time.time()
-        if self.board.valid_moves(atual_color).__len__() > 0:
-            self.board.play(self.atual_player.play(
-                self.board.get_clone()), atual_color)
+        valid_moves = self.board.valid_moves(atual_color) 
+        if valid_moves.__len__() > 0:
+            player_move = self.atual_player.play(self.board.get_clone())
+            
+            while(player_move not in valid_moves):
+                print("JOGADA INVÁLIDA, TENTE NOVAMENTE.\n")
+                print(f'\nJOGADOR: {name} ({atual_color})')
+                player_move = self.atual_player.play(self.board.get_clone())
+
+            self.board.play(player_move, atual_color)
             self.view.update_view()
             self.finish_game = 0
         else:
             print(
                 f'Sem movimentos para o jogador {name}')
             self.finish_game += 1
-        self.atual_player = self._opponent(self.atual_player)
         end = round(time.time() - start)
+        
         print(
             f"Tempo de jogada: {end}s\n")
         time.sleep(0.7)
+        
+        self.atual_player = self._opponent(self.atual_player)
+
 
     def _end_game(self):
         score = self.board.score()
         if score[0] > score[1]:
             print("")
             print('Jogador ' + self.white_player.__class__.__name__ +
-                  ' BRANCO ' + '('+Board.WHITE+') Ganhou')
+                  ' de BRANCO ' + '('+Board.WHITE+') Ganhou')
         elif score[0] < score[1]:
             print("")
             print('Jogador ' + self.black_player.__class__.__name__ +
-                  ' PRETO ' + '('+Board.BLACK+') Ganhou')
+                  ' de PRETO ' + '('+Board.BLACK+') Ganhou')
         else:
             print("")
             print('Jogo terminou empatado')
+
 
     def _opponent(self, player):
         if player.color == Board.WHITE:
@@ -77,9 +90,10 @@ class BoardController:
 
         return self.white_player
 
+
     def _select_player(self, color):
         players = glob.glob('./models/players/*_player.py')
-        if color == '●':
+        if color == Board.WHITE:
             name = 'BRANCO'
         else:
             name = 'PRETO'
