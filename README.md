@@ -28,7 +28,7 @@ Por padrão o jogo possui 3 agentes:
 
 ## Criação de Agentes
 
-A criação de novos agentes deve ser feita na pasta **"controllers/models/players/"** e o nome do arquivo deve possuir o sufixo `_player`, ou seja, `exemplo_player.py`. O conteúdo do arquivo deve ser obrigatoriamente uma classe, contendo a função `play` que receberá o tabuleiro atual.
+A criação de novos agentes devem ser feitas na pasta **"controllers/models/players/"** e o nome do arquivo deve possuir o prefixo `_player`, ou seja, `exemplo_player.py`. O conteúdo do arquivo deve obrigatóriamente um classe, contendo a função `play` que receberá o tabuleiro atual.
 
 ```python
 class ExemploPlayer:
