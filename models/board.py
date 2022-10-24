@@ -44,11 +44,12 @@ class Board:
         for i in range(1, 9):
             for j in range(1, 9):
                 if self.board[i][j] == Board.EMPTY:
+                    move = Move(i, j)
                     for direction in Board.DIRECTIONS:
-                        move = Move(i, j)
                         bracket = self._find_bracket(move, color, direction)
                         if bracket:
                             ret += [move]
+                            break
         return ret
 
     def __str__(self):
