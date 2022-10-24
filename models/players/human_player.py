@@ -12,13 +12,15 @@ class HumanPlayer:
             for i in movimentos:
                 print(f"[{i}] ", end="")
             print()
-        rowInp = int(input("Linha: "))
-        colInp = int(input("Coluna: "))
-        move = Move(rowInp, colInp)
-        while move not in movimentos:
-            print("Movimento invalido. Insira um valido")
             print(board)
-            rowInp = int(input("Linha: "))
-            colInp = int(input("Coluna: "))
-            move = Move(rowInp, colInp)
-        return move
+
+        while(True):
+            try:
+                rowInp = int(input("Linha: "))
+                colInp = int(input("Coluna: "))
+                break
+            except ValueError:
+                continue
+
+        print()
+        return Move(rowInp, colInp)
