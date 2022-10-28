@@ -2,7 +2,7 @@
 
 ## _Campeonato de Inteligências Artificiais - UFRJ_
 
-Código elaborado por [victorlcampos](https://github.com/victorlcampos/TabuleiroOthello) e [rodrigomorgado](https://github.com/rodrigomorgado). O código foi feito em Python 2.x e modificado por mim, para Python 3.x. Além disso, foram adicionadas novas funções e um novo visual.
+Código elaborado por [victorlcampos](https://github.com/victorlcampos/TabuleiroOthello) e [rodrigomorgado](https://github.com/rodrigomorgado). O código foi feito em Python 2.x e modificado por mim, para Python 3.x. Além disso, novas funções fonram adicionadas e um novo visual.
 
 ## Descrição
 
@@ -31,19 +31,19 @@ O tabuleiro é representado como uma matriz, que inclui cada placa do tabuleiro,
 ? ? ? ? ? ? ? ? ? ?
 ```
 
-A borda externa é marcada pelo símbolo "**?**", e as placas vazias são "**.**", o preto é "○"e o branco é "●". As peças pretas e brancas representam os dois jogadores.
+A borda externa é marcada pelo símbolo "**?**", e as placas vazias são "**.**", o preto é "○" e o branco é "●". As peças pretas e brancas representam os dois jogadores.
 
 ```
 EMPTY, BLACK, WHITE, OUTER = '.', '○', '●', '?'
 ```
 
-**OBS.: Dependendo do contraste do terminal, o símbolo "●" pode ser confundido com o preto. Uma maneira de evitar confusão, é lembrar que a bolinha vazada é sempre a preta e a preenchida é sempre a branca.**
+**OBS.: Dependendo do contraste do shell, o símbolo "●" pode ser confundido com o preto. Uma maneira de evitar confusões, é lembrar que a bolinha vazada é sempre a preta e a preenchida é sempre a branca.**
 
 ## Instruções
 
-Execute em qualquer interpretador Python 3.x. Aparecerá os agentes disponiveis para jogar. Escolha primeiro o jogador da peça preta e, em seguida, o jogador da peça branca.
+Execute em qualquer interpretador Python 3.x. Aparecerá os agentes disponiveis para jogar. Escolha primeiro o jogador para ser a peça preta e, em seguida, o jogador para a peça branca.
 
-Você será presenteado com um tabuleiro de 8x8 na tela com um quadrado de 2x2 de peças alternados no meio, conforme descrito acima. Haverá um placar na parte superior do tabuleiro para acompanhar sua pontuação (quantas peças de cada cor) e indicar de quem é a vez. Além disso, ao fim de cada jogada será apresentado na parte inferior do tabuleiro um cronometro indicando quanto tempo levou a jogada.
+Você será presenteado com um tabuleiro de 8x8 na tela com um quadrado de 2x2 de peças alternados no meio, conforme descrito acima. Haverá um placar na parte superior do tabuleiro para acompanhar a pontuação (quantidade de peças de cada jogador) e indicar de quem é a vez. Além disso, ao fim de cada jogada será apresentado na parte inferior do tabuleiro um cronometro indicando quanto tempo levou a jogada. Lembrando que o tempo máximo é de `10 segundos`.
 
 Por padrão o jogo possui 3 agentes:
 
@@ -53,7 +53,7 @@ Por padrão o jogo possui 3 agentes:
 
 ## Criação do Agente
 
-A criação de novos agentes devem ser feitas na pasta **"controllers/models/players/"** e o nome do arquivo deve possuir o prefixo `_player`, ou seja, `exemplo_player.py`. O conteúdo do arquivo deve obrigatóriamente um classe, contendo a função `play` que receberá o tabuleiro atual.
+A criação de um novo agente deve ser feita na pasta **"controllers/models/players/"** e o nome do arquivo deve possuir o sufixo `_player`, ou seja, `exemplo_player.py`. O conteúdo do arquivo deve ser obrigatóriamente um classe, contendo a função `play` que receberá o tabuleiro atual.
 
 ```python
 class ExemploPlayer:
@@ -67,7 +67,7 @@ class ExemploPlayer:
 
 Você deve criar um agente capaz de decidir os melhores movimentos a serem realizados durante as jogadas. A função `play` será responsavel por iniciar a lógica da sua I.A e retornar o melhor movimento a ser feito. Para isso, você deverá implementar obrigatóriamente o algoritmo **Minimax**.
 
-A classe Board (tabuleiro) possui algumas funções úteis que servirão de apoio na elaboração das haurísticas:
+A classe Board (tabuleiro) possui algumas funções úteis que irá te auxiliar na elaboração das haurísticas:
 
 - **play(move, color)** - Retorna o tabuleiro atualizado com o movimento e peça passada.
 - **get_square_color(l, c)** - Retorna o símbolo na coordenada passada, ou seja, '.', '○', '●', '?'.
