@@ -1,6 +1,6 @@
 # Tabuleiro Othello
 
-## _Campeonato UFRJ_
+## _Campeonato de Inteligências Artificiais - UFRJ_
 
 Código elaborado por [victorlcampos](https://github.com/victorlcampos/TabuleiroOthello) e [rodrigomorgado](https://github.com/rodrigomorgado). O código foi feito em Python 2.x e modificado por mim, para Python 3.x. Além disso, foram adicionadas novas funções e um novo visual.
 
@@ -14,6 +14,31 @@ O jogo acontece em uma tabuleiro de 8x8 com uma área 2x2 no meio preenchida com
 
 Para que um movimento seja válido, ele deve criar uma das linhas acima mencionadas. Se não houver movimentos válidos, você deve passar sua vez para o seu oponente. O jogo termina quando ambos os jogadores não podem se mover, e o jogador com mais peças de sua cor no tabuleiro vence.
 
+## Representação do tabuleiro
+
+O tabuleiro é representado como uma matriz, que inclui cada placa do tabuleiro, bem como a borda externa. Um tabuleiro inicial contém quatro peças no centro:
+
+```
+? ? ? ? ? ? ? ? ? ?
+? . . . . . . . . ?
+? . . . . . . . . ?
+? . . . . . . . . ?
+? . . . ● ○ . . . ?
+? . . . ○ ● . . . ?
+? . . . . . . . . ?
+? . . . . . . . . ?
+? . . . . . . . . ?
+? ? ? ? ? ? ? ? ? ?
+```
+
+A borda externa é marcada pelo símbolo "**?**", e as placas vazias são "**.**", o preto é "○"e o branco é "●". As peças pretas e brancas representam os dois jogadores.
+
+```
+EMPTY, BLACK, WHITE, OUTER = '.', '○', '●', '?'
+```
+
+**OBS.: Dependendo do contraste do terminal, o símbolo "●" pode ser confundido com o preto. Uma maneira de evitar confusão, é lembrar que a bolinha vazada é sempre a preta e a preenchida é sempre a branca.**
+
 ## Instruções
 
 Execute em qualquer interpretador Python 3.x. Aparecerá os agentes disponiveis para jogar. Escolha primeiro o jogador da peça preta e, em seguida, o jogador da peça branca.
@@ -22,11 +47,11 @@ Você será presenteado com um tabuleiro de 8x8 na tela com um quadrado de 2x2 d
 
 Por padrão o jogo possui 3 agentes:
 
-- **coner_player** - prioriza os cantos do tabuleiro.
-- **human_player** - jogador humano.
-- **random_player** - escolhas aleatórias de movimentos.
+- **coner_player** - Uma estratégia que prioriza os cantos do tabuleiro.
+- **human_player** - Jogador humano.
+- **random_player** - Uma estratégia que sempre escolhe um movimento aleatório válido.
 
-## Criação de Agentes
+## Criação do Agente
 
 A criação de novos agentes devem ser feitas na pasta **"controllers/models/players/"** e o nome do arquivo deve possuir o prefixo `_player`, ou seja, `exemplo_player.py`. O conteúdo do arquivo deve obrigatóriamente um classe, contendo a função `play` que receberá o tabuleiro atual.
 
@@ -40,17 +65,13 @@ class ExemploPlayer:
 
 ## Objetivo
 
-Você deve criar um agente capaz de decidir os melhores movimentos a serem realizados para ganhar do seu oponente. A função `play` é responsavel por iniciar sua I.A e retornar o melhor movimento a ser feito. Para isso, em cada turno será recebido o tabuleiro (board) atual. Você também deverá implementar o algoritmo **Minimax** que será responsável por decidir qual o melhor movimento a ser realizado.
+Você deve criar um agente capaz de decidir os melhores movimentos a serem realizados durante as jogadas. A função `play` será responsavel por iniciar a lógica da sua I.A e retornar o melhor movimento a ser feito. Para isso, você deverá implementar obrigatóriamente o algoritmo **Minimax**.
 
-A classe Board possui funções que retornam informações do tabuleiro:
+A classe Board (tabuleiro) possui algumas funções úteis que servirão de apoio na elaboração das haurísticas:
 
-- **play(movimento, peça)** - retorna o tabuleiro com o movimento e peça passada.
-- **get_square_color(linha, coluna)** - retorna qual a cor da peça na coordenada passada.
-- **get_clone()** - retorna uma cópia do tabuleiro.
-- **valid_moves(peça)** - retorna os movimentos possíveis da peça.
-- **score()** - retorna uma tupla com a quantidade de peças de cada cor [branco, preta].
-- **\_opponent(peça)** - retorna o oponente da peça passada.
-
-## License
-
-**Free Software, Hell Yeah!**
+- **play(move, color)** - Retorna o tabuleiro atualizado com o movimento e peça passada.
+- **get_square_color(l, c)** - Retorna o símbolo na coordenada passada, ou seja, '.', '○', '●', '?'.
+- **get_clone()** - Retorna uma cópia do tabuleiro.
+- **valid_moves(color)** - Retorna uma lista de todos os movimentos válidos para o jogador.
+- **score()** - Retorna uma lista com a quantidade de peças de cada cor: [branco, preto].
+- **\_opponent(color)** - Retorna o oponente da peça passada.
