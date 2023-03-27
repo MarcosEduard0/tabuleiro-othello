@@ -56,12 +56,12 @@ class BoardController:
             self.finish_game = 0
         else:
             print(
-                f'Sem movimentos para o jogador {name}')
+                f'Sem movimentos para o jogador {name}.')
             self.finish_game += 1
         end = round(time.time() - start)
 
         print(
-            f"Tempo de jogada: {end}s\n")
+            f"Tempo de jogada: {end}s.\n")
         time.sleep(0.7)
 
         self.atual_player = self._opponent(self.atual_player)
@@ -71,14 +71,14 @@ class BoardController:
         if score[0] > score[1]:
             print("")
             print('Jogador ' + self.white_player.__class__.__name__ +
-                  ' de BRANCO ' + '('+Board.WHITE+') Ganhou')
+                  ' de BRANCO ' + '('+Board.WHITE+') Ganhou!')
         elif score[0] < score[1]:
             print("")
             print('Jogador ' + self.black_player.__class__.__name__ +
-                  ' de PRETO ' + '('+Board.BLACK+') Ganhou')
+                  ' de PRETO ' + '('+Board.BLACK+') Ganhou!')
         else:
             print("")
-            print('Jogo terminou empatado')
+            print('Jogo terminou empatado.')
 
     def _opponent(self, player):
         if player.color == Board.WHITE:
@@ -95,7 +95,7 @@ class BoardController:
 
         while True:
             print(
-                f'\nSelecione um dos players abaixo para ser o jogador {name} ({color})')
+                f'\nSelecione um dos players abaixo para ser o jogador {name} ({color}):')
 
             for idx, player in enumerate(players):
                 print(idx.__str__() + " - " +
@@ -104,13 +104,13 @@ class BoardController:
                 player = int(
                     input("\nDigite o numero do player que voce deseja: "))
             except ValueError:
-                print("Escolha deve ser um inteiro")
+                print("Escolha deve ser um inteiro.")
                 continue
 
             if 0 <= player < len(players):
                 break
 
-            print("Escolha inválida")
+            print("Escolha inválida.")
         print()
         module_globals = {}
         exec(open(players[int(player)]).read(), module_globals)

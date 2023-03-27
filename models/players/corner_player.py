@@ -1,3 +1,6 @@
+import math
+
+
 class CornerPlayer:
     def __init__(self, color):
         self.color = color
@@ -6,7 +9,6 @@ class CornerPlayer:
         return self.getNearestCorner(board.valid_moves(self.color))
 
     def getNearestCorner(self, moves):
-        import math
         corners = [[1, 1], [1, 8], [8, 1], [8, 8]]
         minDist = 10
         retMove = None

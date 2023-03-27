@@ -2,15 +2,15 @@
 
 ## _Campeonato de Inteligências Artificiais - UFRJ_
 
-Código elaborado por [victorlcampos](https://github.com/victorlcampos/TabuleiroOthello) e [rodrigomorgado](https://github.com/rodrigomorgado). O código foi feito em Python 2.x e modificado por mim, para Python 3.x. Além disso, novas funções fonram adicionadas e um novo visual.
+O código a seguir foi elaborado por [victorlcampos](https://github.com/victorlcampos/TabuleiroOthello) e [rodrigomorgado](https://github.com/rodrigomorgado), originalmente em Python 2.x. Eu o modifiquei para Python 3.x e adicionei novas funções, além de uma nova aparência.
 
 ## Descrição
 
-Tudo que será descrito está de acordo com as [Regras Oficiais do Jogo](https://www.worldothello.org/about/about-othello/othello-rules/portugues-brasil).
+Todas as informações a seguir estão em conformidade com as [Regras Oficiais do Jogo](https://www.worldothello.org/about/about-othello/othello-rules/portugues-brasil).
 
-Othello é um jogo de dois jogadores com cada jogador tendo uma cor (normalmente preto e branco), e o objetivo do jogo é terminar com mais peças da sua cor no tabuleiro do que as peças da cor de seu oponente.
+O Othello é um jogo de dois jogadores, em que cada um possui uma cor (normalmente preto e branco). O objetivo do jogo é terminar com mais peças da sua cor no tabuleiro do que as peças da cor de seu oponente.
 
-O jogo acontece em uma tabuleiro de 8x8 com uma área 2x2 no meio preenchida com peças de cores alternadas. Os jogadores se revezam colocando as peças de suas respectivas cores. Se a colocação da sua peça cria uma linha de peças consecutivas do adversário delimitada por peças de sua cor, no início e no final da linha, todas as peças na linha “viram” para se tornar da sua cor. Note que essa "linha" pode ser feita na vertical, horizontal ou diagonal.
+O jogo acontece em um tabuleiro 8x8 com uma área 2x2 no meio preenchida com peças de cores alternadas. Os jogadores se revezam colocando as peças de suas respectivas cores. Se a colocação de uma peça cria uma linha de peças consecutivas do adversário delimitada por peças da sua cor, no início e no final da linha, todas as peças na linha “viram” para se tornar da sua cor. Observe que essa "linha" pode ser feita na vertical, horizontal ou diagonal.
 
 Para que um movimento seja válido, ele deve criar uma das linhas acima mencionadas. Se não houver movimentos válidos, você deve passar sua vez para o seu oponente. O jogo termina quando ambos os jogadores não podem se mover, e o jogador com mais peças de sua cor no tabuleiro vence.
 
@@ -41,9 +41,9 @@ EMPTY, BLACK, WHITE, OUTER = '.', '○', '●', '?'
 
 ## Instruções
 
-Execute em qualquer interpretador Python 3.x. Aparecerá os agentes disponiveis para jogar. Escolha primeiro o jogador para ser a peça preta e, em seguida, o jogador para a peça branca.
+Para jogar, execute o programa em um interpretador Python 3.x. Serão apresentados os agentes disponíveis para jogar. Escolha primeiro o jogador para ser a peça preta e, em seguida, o jogador para a peça branca.
 
-Você será presenteado com um tabuleiro de 8x8 na tela com um quadrado de 2x2 de peças alternados no meio, conforme descrito acima. Haverá um placar na parte superior do tabuleiro para acompanhar a pontuação (quantidade de peças de cada jogador) e indicar de quem é a vez. Além disso, ao fim de cada jogada será apresentado na parte inferior do tabuleiro um cronometro indicando quanto tempo levou a jogada. Lembrando que o tempo máximo é de `10 segundos`.
+Ao iniciar o jogo, um tabuleiro 8x8 será exibido na tela, com um quadrado de 2x2 de peças alternadas no centro. Um placar na parte superior do tabuleiro indicará a pontuação de cada jogador e de quem é a vez de jogar. Após cada jogada, o tempo que levou para a jogada será exibido na parte inferior do tabuleiro. Vale lembrar que o tempo máximo permitido para uma jogada é de `10 segundos`.
 
 Por padrão o jogo possui 3 agentes:
 
@@ -53,7 +53,7 @@ Por padrão o jogo possui 3 agentes:
 
 ## Criação do Agente
 
-A criação de um novo agente deve ser feita na pasta **"controllers/models/players/"** e o nome do arquivo deve possuir o sufixo `_player`, ou seja, `exemplo_player.py`. O conteúdo do arquivo deve ser obrigatóriamente um classe, contendo a função `play` que receberá o tabuleiro atual.
+Caso queira criar um novo agente, basta criar um arquivo na pasta **"controllers/models/players/"** com nome do arquivo possuindo o sufixo `_player`, ou seja, `nome_do_agente_player.py`. O conteúdo do arquivo deve ser obrigatóriamente um classe que tenha a função `play`, a qual receberá o tabuleiro atual como parâmetro.
 
 ```python
 class ExemploPlayer:
@@ -65,9 +65,9 @@ class ExemploPlayer:
 
 ## Objetivo
 
-Você deve criar um agente capaz de decidir os melhores movimentos a serem realizados durante as jogadas. A função `play` será responsavel por iniciar a lógica da sua I.A e retornar o melhor movimento a ser feito. Para isso, você deverá implementar obrigatóriamente o algoritmo **Minimax**.
+O objetivo deste desafio é criar um agente que possa escolher os melhores movimentos durante o jogo. Para isso, você deve implementar obrigatoriamente o algoritmo **Minimax** na função `play`, que será responsável por iniciar a lógica da sua Inteligência Artifial e retornar o melhor movimento a ser feito.
 
-A classe Board (tabuleiro) possui algumas funções úteis que irá te auxiliar na elaboração das haurísticas:
+A classe `Board` (tabuleiro) possui algumas funções úteis que irão ajudá-lo na elaboração das heurísticas:
 
 - **play(move, color)** - Retorna o tabuleiro atualizado com o movimento e peça passada.
 - **get_square_color(l, c)** - Retorna o símbolo na coordenada passada, ou seja, '.', '○', '●', '?'.
